@@ -37,7 +37,8 @@ public class SanPhamServiceImpl implements SanPhamService{
         nDA.setGia(Float.parseFloat(product.getGia()+""));
         nDA.setHsd(null);
         nDA.setName(product.getName());
-        nDA.setDonViTinh(product.getDonViTinh());
+        nDA.setDovitinh(product.getDovitinh());
+        nDA.setMasp(product.getMasp());
         return productRepository.save(nDA);
     }
 

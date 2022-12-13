@@ -31,15 +31,15 @@ public class SanPham {
     }
 
     public void setMasp(String masp) {
-        masp = masp;
+        this.masp = masp;
     }
 
-    public String getDonViTinh() {
+    public String getDovitinh() {
         return dovitinh;
     }
 
-    public void setDonViTinh(String donViTinh) {
-        dovitinh = donViTinh;
+    public void setDovitinh(String dovitinh) {
+        this.dovitinh = dovitinh;
     }
 
     public String getName() {
@@ -65,6 +65,4 @@ public class SanPham {
     public void setHsd(Date hsd) {
         this.hsd = hsd;
     }
-
-
 }
