@@ -28,12 +28,12 @@ public class SanPhamServiceImpl implements SanPhamService{
 
     @Override
     public SanPham getSanPhamById(String id) {
-        return productRepository.findSanPhamsByName(id);
+        return productRepository.findSanPhamsByMasp(id);
     }
 
     @Override
     public SanPham updateProduct(SanPham product, String id) {
-        SanPham nDA = productRepository.findSanPhamsByName(id);
+        SanPham nDA = productRepository.findSanPhamsByMasp(id);
         nDA.setGia(Float.parseFloat(product.getGia()+""));
         nDA.setHsd(null);
         nDA.setName(product.getName());

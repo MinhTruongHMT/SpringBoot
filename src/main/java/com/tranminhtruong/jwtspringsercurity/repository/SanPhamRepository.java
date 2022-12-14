@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SanPhamRepository extends JpaRepository<SanPham,String> {
-    SanPham findSanPhamsByName(String manv);
+    SanPham findSanPhamsByMasp(String manv);
 }
