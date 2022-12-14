@@ -15,6 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/user")
 public class SanPhamController {
 
     private SanPhamService sanPhamService;

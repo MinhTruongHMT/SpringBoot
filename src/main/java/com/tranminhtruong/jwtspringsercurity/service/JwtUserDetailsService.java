@@ -33,19 +33,19 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getAuthorities());
-        System.out.println("phan nay la quyen "+authority);
+        System.out.println("đang có quyền "+authority);
         grantList.add(authority);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 grantList);
     }
 
     public NhanVien save(NhanVien user) {
-
         NhanVien newUser = new NhanVien();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setAuthorities(user.getAuthorities());
         newUser.setEmail(user.getEmail());
+        newUser.setFullname(user.getFullname());
         return userRepository.save(newUser);
 
     }

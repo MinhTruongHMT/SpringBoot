@@ -5,6 +5,7 @@ import java.util.List;
 import com.tranminhtruong.jwtspringsercurity.config.JwtTokenUtil;
 import com.tranminhtruong.jwtspringsercurity.model.JwtRequest;
 import com.tranminhtruong.jwtspringsercurity.model.NhanVien;
+import com.tranminhtruong.jwtspringsercurity.model.NhanVienResponse;
 import com.tranminhtruong.jwtspringsercurity.service.JwtUserDetailsService;
 import com.tranminhtruong.jwtspringsercurity.service.NguoiDungService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 
 
@@ -62,7 +56,7 @@ public class NguoiDungController {
 
 
     // build get all employees REST API
-    @GetMapping("/users")
+    @GetMapping("/admin/users")
     public List<NhanVien> getAllEmployees() {
         return employeeService.getAllNguoiDung();
     }
@@ -70,13 +64,15 @@ public class NguoiDungController {
     // build get employee by id REST API
     // http://localhost:8080/api/employees/1
     @GetMapping("{id}")
-    public ResponseEntity<NhanVien> getNguoiDungById(@PathVariable("id") long employeeId) {
-        return new ResponseEntity<NhanVien>(employeeService.getNguoiDungById(employeeId), HttpStatus.OK);
+    public ResponseEntity<NhanVienResponse> getNguoiDungById(@PathVariable("id") long employeeId) {
+
+
+        return new ResponseEntity<NhanVienResponse>(new NhanVienResponse(employeeService.getNguoiDungById(employeeId)) , HttpStatus.OK);
     }
 
     // build update employee REST API
     // http://localhost:8080/api/employees/1
-    @PutMapping("{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity<NhanVien> updateEmployee(@PathVariable("id") long id
             , @RequestBody NhanVien employee) {
         return new ResponseEntity<NhanVien>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
@@ -84,7 +80,7 @@ public class NguoiDungController {
 
     // build delete employee REST API
     // http://localhost:8080/api/employees/1
-    @DeleteMapping("{id}")
+    @DeleteMapping("/admin/{id}")
     @Transactional
     public ResponseEntity<String> deleteEmployee(@PathVariable("id") long id) {
 

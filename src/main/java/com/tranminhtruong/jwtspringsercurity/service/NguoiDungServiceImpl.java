@@ -4,6 +4,8 @@ package com.tranminhtruong.jwtspringsercurity.service;
 import java.util.List;
 import com.tranminhtruong.jwtspringsercurity.model.NhanVien;
 import com.tranminhtruong.jwtspringsercurity.repository.NguoiDungRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -13,6 +15,8 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
     private NguoiDungRepository employeeRepository;
 
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     public NguoiDungServiceImpl(NguoiDungRepository employeeRepository) {
         super();
@@ -50,6 +54,8 @@ public class NguoiDungServiceImpl implements NguoiDungService {
         NhanVien nDA = employeeRepository.findById(id);
         nDA.setPassword(oDA.getPassword());
         nDA.setUsername(oDA.getUsername());
+        nDA.setPassword(bcryptEncoder.encode(oDA.getPassword()));
+        nDA.setAuthorities(oDA.getAuthorities());
         return employeeRepository.save(nDA);
     }
 
